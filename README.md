@@ -9,15 +9,19 @@ Este repositório traz informações referentes em como executar o Odoo e a loca
 Após a instalação do Docker (que se encontra abaixo), clona-se este diretório e dentro dele está o ambiente do docker-compose. Alguns comandos para gerenciar seu docker:
 
 Para a primeria utilização é necessário compilar as modificações no Odoo (feita via DockerFile), esta operação pode demorar alguns instantes dependendo da sua conexão.
+
 	docker-compose build
 
 Para subir a instâcia do docker compose executa-se o comando abaixo (ela criará um container com odoo e um com postgres): 
+
 	docker compose up
 
 O comando abaixo derruba todos os containers que foram criados para o esse compose:
+
 	docker compose down
 
 O mesmo comando acima mas ele remove os volumes pertencentes aos containers:
+
 	docker compose down -v
 
 ## Instalação Docker (Ubuntu)
