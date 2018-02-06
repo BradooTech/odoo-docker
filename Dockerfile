@@ -17,6 +17,10 @@ RUN set -x; \
 	&& curl https://raw.githubusercontent.com/BradooTech/scripts/master/dependencias/ubuntu/pip3 -O | xargs pip3 install -r pip3\
 	&& curl https://raw.githubusercontent.com/odoo/odoo/11.0/requirements.txt -O | xargs pip3 install -r requirements.txt
 
+RUN set -x; \
+	pip3 uninstall PyTrustNFe3 -y \
+	&& pip3 install git+https://github.com/BradooTech/PyTrustNFe
+
 
 RUN apt-get install systemd -y \
   && echo fs.inotify.max_user_watches=524288 | tee -a /etc/sysctl.conf

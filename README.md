@@ -50,9 +50,9 @@ O arquivo no qual será mapeado é o docker-compose.yml ficando como no trecho a
 	  - odoo-web-data:/var/lib/odoo
 	  - ./config:/etc/odoo
 	  - ./addons:/mnt/extra-addons:ro,Z
-	  - ./odoo-brasil:/mnt/extra-addons:ro,Z
+	  - ./odoo-brasil:/mnt/odoo-brasil:ro,Z
 
-Todos devem apontar para o diretório /mnt/extra-addons.
+Todos devem apontar para o diretório /mnt/. No caso acima ficou /mnt/odoo-brasil, caso fosse uma pasta chamada odoo-oca, ficaria /mnt/odoo-oca.
 
 
 
