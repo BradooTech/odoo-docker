@@ -24,6 +24,38 @@ O mesmo comando acima mas ele remove os volumes pertencentes aos containers:
 
 	docker compose down -v
 
+
+### Addons
+
+Para a utilização de addons externos (localização, customização, etc), recomenda-se mapear a pasta da seguinte forma:
+
+- Caso seja uma coleção de módulos criar uma pasta na raiz, ao lado de config, addons, e mapea-la no docker-compose.yml. Conforme arvore abaixo:
+
+.
+├── addons
+├── config
+└── odoo-brasil
+
+- Modulos unicos (a pasta em si já traz o módulo), coloca-se na pasta addons. Exemplo:
+
+.
+├── addons
+│   └── bradoo
+├── config
+└── odoo-brasil
+
+O arquivo no qual será mapeado é o docker-compose.yml ficando como no trecho abaixo:
+
+	volumes:
+	  - odoo-web-data:/var/lib/odoo
+	  - ./config:/etc/odoo
+	  - ./addons:/mnt/extra-addons:ro,Z
+	  - ./odoo-brasil:/mnt/extra-addons:ro,Z
+
+Todos devem apontar para o diretório /mnt/extra-addons.
+
+
+
 ## Instalação Docker (Ubuntu)
 
 Recomenda-se seguir o tutorial oficial do docker-ce para sua instalação, mas pode-se usar o código abaixo:
@@ -71,6 +103,8 @@ Deslogue do usuario e logue novamente, execute o comando abaixo:
 	 docker -v
 
 Caso o comando tenha sido bem sucedido você não precisará mais usar o sudo para executar comandos docker.
+
+
 
 ### Docker Compose
 
