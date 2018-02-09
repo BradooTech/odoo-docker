@@ -1,4 +1,4 @@
-FROM odoo:latest
+FROM odoo:10
 
 USER root
 
@@ -7,19 +7,20 @@ RUN set -x; \
 	apt-get update \
 	&& apt-get install -y --no-install-recommends \
 	&& curl https://raw.githubusercontent.com/gabrielbalog/odoo-docker/master/apt | xargs apt-get install -y --no-install-recommends \
-	&& pip3 install wheel \
-	&& pip3 install phonenumbers \
-	&& pip3 install watchdog
+	&& apt-get install pip2 \
+	&& pip2 install wheel \
+	&& pip2 install phonenumbers \
+	&& pip2 install watchdog
 
 RUN set -x; \
-	pip3 install --upgrade pip \
-	&& pip3 install --upgrade setuptools \
-	&& curl https://raw.githubusercontent.com/BradooTech/scripts/master/dependencias/ubuntu/pip3 -O | xargs pip3 install -r pip3\
-	&& curl https://raw.githubusercontent.com/odoo/odoo/11.0/requirements.txt -O | xargs pip3 install -r requirements.txt
+	pip2 install --upgrade pip \
+	&& pip2 install --upgrade setuptools \
+	&& curl https://raw.githubusercontent.com/BradooTech/scripts/master/dependencias/ubuntu/pip -O | xargs pip2 install -r pip2\
+	&& curl https://raw.githubusercontent.com/odoo/odoo/10.0/requirements.txt -O | xargs pip2 install -r requirements.txt
 
 RUN set -x; \
-	pip3 uninstall PyTrustNFe3 -y \
-	&& pip3 install git+https://github.com/BradooTech/PyTrustNFe
+	pip2 uninstall PyTrustNFe3 -y \
+	&& pip2 install git+https://github.com/BradooTech/PyTrustNFe
 
 
 RUN apt-get install systemd -y \
