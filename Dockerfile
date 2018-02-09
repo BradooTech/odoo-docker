@@ -6,7 +6,7 @@ USER root
 RUN set -x; \
 	apt-get update \
 	&& apt-get install -y --no-install-recommends \
-	&& curl https://raw.githubusercontent.com/gabrielbalog/odoo-docker/master/apt | xargs apt-get install -y --no-install-recommends \
+	&& curl https://raw.githubusercontent.com/gabrielbalog/odoo-docker/10/apt | xargs apt-get install -y --no-install-recommends \
 	&& apt-get install pip2 \
 	&& pip2 install wheel \
 	&& pip2 install phonenumbers \
