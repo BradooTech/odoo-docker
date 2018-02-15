@@ -10,7 +10,6 @@ libx11-6
 libxext6
 libxrender1
 python-gdata
-python-psycogreen
 python3-psycopg2
 python3-ofxparse
 node-clean-css
@@ -19,9 +18,7 @@ python-libxslt1
 python3-lxml
 python3-simplejson
 python3-vatnumber
-python3-easywebdav
 python-zsi
-python3-unittest2
 wget
 subversion
 git
