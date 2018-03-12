@@ -7,24 +7,27 @@ RUN set -x; \
 	apt-get update \
 	&& apt-get install -y --no-install-recommends \
 	&& curl https://raw.githubusercontent.com/gabrielbalog/odoo-docker/master/apt | xargs apt-get install -y --no-install-recommends \
-	&& pip3 install wheel \
-	&& pip3 install phonenumbers \
-	&& pip3 install watchdog
+	&& pip3 install wheel --no-cache-dir \
+	&& pip3 install phonenumbers --no-cache-dir \
+	&& pip3 install watchdog --no-cache-dir \
+	&& apt-get clean
 
 RUN set -x; \
-	pip3 install --upgrade pip \
-	&& pip3 install --upgrade setuptools \
-	&& curl https://raw.githubusercontent.com/BradooTech/scripts/master/dependencias/ubuntu/pip3 -O | xargs pip3 install -r pip3\
-	&& curl https://raw.githubusercontent.com/odoo/odoo/11.0/requirements.txt -O | xargs pip3 install -r requirements.txt
+	pip3 install --upgrade pip --no-cache-dir \
+	&& pip3 install --upgrade setuptools --no-cache-dir \
+	&& curl https://raw.githubusercontent.com/BradooTech/scripts/master/dependencias/ubuntu/pip3 -O | xargs pip3 install -r pip3 --no-cache-dir \
+	&& curl https://raw.githubusercontent.com/odoo/odoo/11.0/requirements.txt -O | xargs pip3 install -r requirements.txt --no-cache-dir
 
 RUN set -x; \
 	pip3 uninstall PyTrustNFe3 -y \
-	&& pip3 install git+https://github.com/BradooTech/PyTrustNFe
+	&& pip3 install git+https://github.com/BradooTech/PyTrustNFe --no-cache-dir
 
 
 RUN apt-get install systemd -y \
-  && echo fs.inotify.max_user_watches=524288 | tee -a /etc/sysctl.conf
-
+	&& echo fs.inotify.max_user_watches=524288 | tee -a /etc/sysctl.conf \
+	&& apt-get clean \
+	&& pip3 install plotly \
+	&& pip3 install pandas
 
 EXPOSE 8069 8071
 
