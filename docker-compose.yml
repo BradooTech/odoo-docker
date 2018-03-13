@@ -13,7 +13,6 @@ services:
       - ./enterprise:/mnt/enterprise
       - ./odoo-brasil:/mnt/odoo-brasil
       - ./odoo/odoo:/usr/lib/python3/dist-packages/odoo
-      - ./openeducat_erp:/mnt/openeducat_erp
     command: odoo
     restart: always
     tty: true
