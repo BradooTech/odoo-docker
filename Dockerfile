@@ -27,6 +27,7 @@ RUN apt-get install systemd -y \
 	&& echo fs.inotify.max_user_watches=524288 | tee -a /etc/sysctl.conf \
 	&& apt-get clean \
 	&& pip3 install plotly \
+	&& pip3 install unidecode \
 	&& pip3 install pandas
 
 EXPOSE 8069 8071
