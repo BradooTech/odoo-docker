@@ -10,7 +10,8 @@ RUN set -x; \
 	&& apt-get install pip2 \
 	&& pip2 install wheel \
 	&& pip2 install phonenumbers \
-	&& pip2 install watchdog
+	&& pip2 install phonenumbers \
+	&& pip2 install unidecode
 
 RUN set -x; \
 	pip2 install --upgrade pip \
