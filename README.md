@@ -6,21 +6,21 @@ Este repositório traz informações para se executar o Odoo e a localização e
 Seguem os passos:
 1. Crie um pasta de trabalho e acesse o terminal a partir desta pasta.
 ```
-	mkdir minha-pasta
-	cd minha-pasta
+mkdir minha-pasta
+cd minha-pasta
 ```
 
 2. Clonar o repositório para a pasta de trabalho:
 ```
-	git clone https://github.com/BradooTech/odoo-docker.git
+git clone https://github.com/BradooTech/odoo-docker.git
 ```
 3. Entre na pasta que foi baixada
 ```
-	cd odoo-docker
+cd odoo-docker
 ```
 4. Execute o comando abaixo para baixar as libs complementares:
 ```
-	./clone.sh
+./clone.sh
 ```
 
 ## Utilização do Docker Compose
@@ -41,7 +41,7 @@ O comando abaixo derruba todos os containers que foram criados para o esse compo
 
 O mesmo comando acima mas ele remove os volumes pertencentes aos containers:
 
-	docker compose down -v
+	docker-compose down -v
 
 
 ### Addons
@@ -51,19 +51,19 @@ Para a utilização de addons externos (localização, customização, etc), rec
 - Caso seja uma coleção de módulos criar uma pasta na raiz, ao lado de config, addons, e mapeá-la no `docker-compose.yml`. Conforme árvore abaixo:
 
 ```
-		.
-		├── addons
-		├── config
-		└── odoo-brasil
+	.
+	├── addons
+	├── config
+	└── odoo-brasil
 ```
 - Modulos únicos (a pasta em si já traz o módulo), coloca-se na pasta `addons`. Exemplo:
 
 ```
-		.
-		├── addons
-		│   └── bradoo
-		├── config
-		└── odoo-brasil
+	.
+	├── addons
+	│   └── bradoo
+	├── config
+	└── odoo-brasil
 ```
 
 O arquivo no qual será mapeado é o `docker-compose.yml` ficando como no trecho abaixo:
