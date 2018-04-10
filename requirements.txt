@@ -82,7 +82,7 @@ suds-requests==0.3.1
 traceback2==1.4.0
 unittest2==1.1.0
 urllib3==1.20
-uTidylib==0.2
+uTidylib
 vatnumber==1.2
 vobject==0.9.4.1
 webencodings==0.5
