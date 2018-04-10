@@ -19,7 +19,6 @@ future==0.16.0
 gdata==2.0.18
 gevent==1.2.1
 greenlet==0.4.12
-gyp==0.1
 html5lib==0.999999999
 idna==2.2
 ipaddress==1.0.18
