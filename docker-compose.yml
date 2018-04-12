@@ -10,7 +10,7 @@ services:
       - odoo-web-data:/var/lib/odoo
       - ./config:/etc/odoo
       - ./addons:/mnt/extra-addons:ro,Z
-    command: ["odoo", "--dev=reload,qweb,werkzeug,xml"]
+    command: odoo
     restart: always
     tty: true
   db:
