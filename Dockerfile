@@ -7,26 +7,30 @@ RUN set -x; \
 	apt-get update \
 	&& apt-get install -y --no-install-recommends \
 	&& curl https://raw.githubusercontent.com/BradooTech/odoo-docker/10.0/apt | xargs apt-get install -y --no-install-recommends \
-	&& apt-get install pip2 \
-	&& pip2 install wheel \
-	&& pip2 install phonenumbers \
-	&& pip2 install phonenumbers \
-	&& pip2 install unidecode
+	&& apt-get clean \
+	&& apt-get autoremove -y
 
 RUN set -x; \
-	pip2 install --upgrade pip \
-	&& pip2 install --upgrade setuptools \
-	&& curl https://raw.githubusercontent.com/BradooTech/scripts/master/dependencias/ubuntu/pip -O | xargs pip2 install -r pip2\
-	&& curl https://raw.githubusercontent.com/odoo/odoo/10.0/requirements.txt -O | xargs pip2 install -r requirements.txt
+	apt-get install python-dev python3-dev python-pip -y
 
 RUN set -x; \
-	pip2 uninstall PyTrustNFe3 -y \
-	&& pip2 install git+https://github.com/BradooTech/PyTrustNFe
+	pip install --upgrade pip==9.0.3 \
+	&& pip install --upgrade setuptools
 
+RUN set -x; \
+	pip install wheel --no-cache-dir \
+	&& pip install phonenumbers --no-cache-dir \
+	&& pip install phonenumbers --no-cache-dir \
+	&& pip install unidecode --no-cache-dir \
+	&& curl https://raw.githubusercontent.com/BradooTech/odoo-docker/10.0/requirements.txt -O | xargs pip install -r requirements.txt --no-cache-dir \
+	&& curl https://raw.githubusercontent.com/odoo/odoo/10.0/requirements.txt -O | xargs pip install -r requirements.txt --no-cache-dir
 
 RUN apt-get install systemd -y \
   && echo fs.inotify.max_user_watches=524288 | tee -a /etc/sysctl.conf
 
+RUN pip install PyTrustNFe \
+	&& apt-get install pkg-config -y \
+	&& pip install xmlsec
 
 EXPOSE 8069 8071
 

@@ -9,7 +9,8 @@ services:
     volumes:
       - odoo-web-data:/var/lib/odoo
       - ./config:/etc/odoo
-      - ./addons:/mnt/extra-addons:ro,Z
+      - ./addons:/mnt/extra-addons:ro,Z,
+      - ./odoo/odoo:/usr/lib/python2.7/dist-packages/odoo
     command: odoo
     restart: always
     tty: true
