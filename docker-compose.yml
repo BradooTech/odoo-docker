@@ -24,6 +24,13 @@ services:
     volumes:
       - odoo-db-data:/var/lib/postgresql/data/pgdata
     restart: always
+  db_admin:
+    image: dpage/pgadmin4
+    ports: 
+      - "80:80"
+    environment:
+      - PGADMIN_DEFAULT_EMAIL=admin
+      - PGADMIN_DEFAULT_PASSWORD=admin
 volumes:
   odoo-web-data:
   odoo-db-data:
