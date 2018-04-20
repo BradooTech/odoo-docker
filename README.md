@@ -1,7 +1,23 @@
+
 # Odoo Docker
 
 Este repositório traz informações referentes em como executar o Odoo e a localização em conjuto. Foi criado um DockerFile novo para o Odoo que traz novas libs e packages. Pode ser usado individualmente e tambem no docker-compose (recomendando).
 
+## Utilização 
+
+Após o clone deste repositório na pasta desejada, os seguintes passos devem ser feito:
+
+- Executar clone.sh 
+
+		./clone.sh
+
+- Fazer o build da imagem do Odoo
+
+		docker-compose build
+
+- Iniciar os containers
+
+		docker-compose up
 
 
 ## Utilização do Docker Compose
@@ -40,7 +56,7 @@ Para a utilização de addons externos (localização, customização, etc), rec
 
 .
 ├── addons
-│   └── bradoo
+│   └── bradoo
 ├── config
 └── odoo-brasil
 
@@ -95,8 +111,8 @@ Adicione o usuario docker:
 	sudo groupadd docker
 
 Adicione o usuario no grupo de root:
-​	
-    sudo usermod -aG docker $USER
+
+	sudo usermod -aG docker $USER
 
 Deslogue do usuario e logue novamente, execute o comando abaixo:
 
