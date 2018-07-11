@@ -26,3 +26,5 @@ git clone https://github.com/BradooTech/odoo-docker -b 11.0 --depth=1
 cd odoo-docker
 ./clone.sh
 docker-compose up -d
+
+echo "$(tput setaf 1)$(tput setab 7)Processo Concluido!$(tput sgr 0)"
