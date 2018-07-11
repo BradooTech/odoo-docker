@@ -13,7 +13,7 @@ RUN set -x; \
 	&& apt-get clean
 
 RUN set -x; \
-	pip3 install --upgrade pip --no-cache-dir \
+	pip3 install --upgrade pip==9.0.3 --no-cache-dir \
 	&& pip3 install --upgrade setuptools --no-cache-dir \
 	&& curl https://raw.githubusercontent.com/BradooTech/scripts/master/dependencias/ubuntu/pip3 -O | xargs pip3 install -r pip3 --no-cache-dir \
 	&& curl https://raw.githubusercontent.com/odoo/odoo/11.0/requirements.txt -O | xargs pip3 install -r requirements.txt --no-cache-dir
