@@ -2,43 +2,57 @@ FROM odoo:11.0
 
 USER root
 
-# Install some deps, lessc and less-plugin-clean-css, and wkhtmltopdf
+RUN pip3 install wheel
+
 RUN set -x; \
 	apt-get update \
-	&& apt-get install -y --no-install-recommends \
-	&& curl https://raw.githubusercontent.com/gabrielbalog/odoo-docker/master/apt | xargs apt-get install -y --no-install-recommends \
-	&& pip3 install wheel --no-cache-dir \
-	&& pip3 install phonenumbers --no-cache-dir \
-	&& pip3 install watchdog --no-cache-dir \
+	&& apt-get dist-upgrade -y \
+	&& apt-get install \
+	python-dev \
+	python3-dev \
+	build-essential \
+	libxml2-dev \
+	libxmlsec1-dev \
+	libpython3-dev \
+	python2.7-dev \
+	libldap2-dev \
+	libsasl2-dev \
+	ldap-utils \
+	python-tox \
+	lcov \
+	valgrind \
+	libxmlsec1 -y --no-install-recommends
+
+RUN pip3 install --upgrade pip --no-cache-dir
+
+RUN pip3 install --upgrade setuptools --no-cache-dir
+
+RUN pip3 install xmlsec \
+	phonenumbers \
+	python3-boleto \
+	qrcode \
+	pyldap \
+	vobject \
+	netifaces \
+	evdev \
+	python3-cnab \
+	watchdog \
+	gengo --no-cache-dir
+
+RUN set -x; \
+	pip3 install https://github.com/BradooTech/PyTrustNFe/archive/mergenfe4.zip --no-cache-dir
+
+# Configuracao para executar o modo dev no Odoo
+RUN set -x; \
+    apt-get update \
+    && apt-get install systemd -y \
+	&& echo fs.inotify.max_user_watches=524288 | tee -a /etc/sysctl.conf \
 	&& apt-get clean
 
-RUN set -x; \
-	pip3 install --upgrade pip==9.0.3 --no-cache-dir \
-	&& pip3 install --upgrade setuptools --no-cache-dir \
-	&& curl https://raw.githubusercontent.com/BradooTech/scripts/master/dependencias/ubuntu/pip3 -O | xargs pip3 install -r pip3 --no-cache-dir \
-	&& curl https://raw.githubusercontent.com/odoo/odoo/11.0/requirements.txt -O | xargs pip3 install -r requirements.txt --no-cache-dir
-
-RUN set -x; \
-	pip3 uninstall PyTrustNFe3 -y \
-	&& pip3 install git+https://github.com/BradooTech/PyTrustNFe --no-cache-dir
-
-
-RUN apt-get install systemd -y \
-	&& echo fs.inotify.max_user_watches=524288 | tee -a /etc/sysctl.conf \
-	&& apt-get clean \
-	&& pip3 install plotly \
-	&& pip3 install pandas \
-	&& pip3 install unidecode 
-
-RUN pip3 install xmltodict \
-	&& pip3 install xml2json
+VOLUME odoo_filestore:/var/lib/odoo
 
 EXPOSE 8069 8071
 
-VOLUME ./modules:/mnt/extra-addons
-VOLUME odoo_filestore:/var/lib/odoo
-
-# Set default user when running the container
 USER odoo
 
 ENTRYPOINT ["/entrypoint.sh"]
